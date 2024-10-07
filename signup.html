@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <div class="logo-container">
+        <img src="images/logo.png" alt="Logo"/>
+    </div>
     <h2>Sign Up</h2>
     <form action="register-user.php" method="POST" id="signupForm">
         <label for="email">Email:</label>
@@ -23,21 +26,28 @@
 
         <button type="submit">Sign Up</button>
     </form>
-    <p><a href="login.html">Back to Login</a></p>
-<script>
+    <p><a href="index.html">Back to Login</a></p>
+    <script>
         document.getElementById('signupForm').addEventListener('submit', function (e) {
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            if (password !== confirmPassword) {
+            const email = document.getElementById('email').value;
+            const fullName = document.getElementById('fullName').value;
+
+            if (!email || !password || !confirmPassword || !fullName) {
+                alert('Please fill in all fields.');
+                e.preventDefault();
+            } else if (password !== confirmPassword) {
                 alert('Passwords do not match!');
-                e.preventDefault(); // Prevent form submission
+                e.preventDefault();
             } else if (password.length < 6) {
                 alert('Password must be at least 6 characters long!');
-                e.preventDefault(); // Prevent form submission
+                e.preventDefault();
+            } else {
+                alert('Signing up Please Wait...'); 
             }
         });
-</script>
+    </script>
     
 </body>
 </html>
